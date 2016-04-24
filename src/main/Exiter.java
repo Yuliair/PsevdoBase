@@ -1,4 +1,4 @@
-package watcher;
+package main;
 
 import java.util.Scanner;
 
@@ -16,13 +16,13 @@ public class Exiter extends Thread {
             Scanner scanner = new Scanner(System.in);
             String string = scanner.nextLine();
             if (string.equals("stop")){ ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                System.out.println("Fine fine");
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 finally {
+                    //toDo close files
                     System.exit(0);
                 }
             }

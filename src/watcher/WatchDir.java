@@ -4,15 +4,19 @@ import java.nio.file.*;
 import static java.nio.file.StandardWatchEventKinds.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Example to watch a directory (or tree) for changes to files.
  */
-public class WatchDir {
+public class WatchDir implements Runnable{
 
     private final WatchService watcher;
     WatchKey watchKey;
     Path path;
+
+
 
     @SuppressWarnings("unchecked")
     static <T> WatchEvent<T> cast(WatchEvent<?> event) {
@@ -30,7 +34,7 @@ public class WatchDir {
     /**
      * Creates a WatchService and registers the given directory
      */
-    WatchDir(Path dir) throws IOException {
+    public WatchDir(Path dir) throws IOException {
         this.watcher = FileSystems.getDefault().newWatchService();
             register(dir);
     }
@@ -38,7 +42,7 @@ public class WatchDir {
     /**
      * Process all events for keys queued to the watcher
      */
-    void processEvents() {
+    public void run() {
         for (;;) {
 
             // wait for key to be signalled
@@ -67,15 +71,26 @@ public class WatchDir {
         Path dir = this.path;
             WatchEvent.Kind kind = event.kind();
 
-            if (kind != OVERFLOW) {
+            if (kind != OVERFLOW && kind != ENTRY_DELETE) {
                 // Context for directory entry event is the file name of entry
                 WatchEvent<Path> ev = cast(event);
                 Path name = ev.context();
                 Path child = dir.resolve(name);
                 ////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                System.out.format("%s: %s\n", event.kind().name(), child);
+                //в таски должна положиться обработка файла
+
+               // System.out.format("%s: %s\n", event.kind().name(),"-"+ child);
+                // child - path from src to file
+                for (DirChangeListener listener : listeners)
+                   listener.handleFile(child);
             }
         }
+
+    private List<DirChangeListener> listeners = new ArrayList<DirChangeListener>();
+
+    public void addListener(DirChangeListener toAdd) {
+        listeners.add(toAdd);
+    }
 
 
     }

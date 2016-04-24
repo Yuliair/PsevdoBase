@@ -1,5 +1,33 @@
-User user2  spent 100 on the http://ru.wikipedia.org since 18-Feb-16
-User user10  spent 30 on the http://hh.ru since 18-Feb-16
-User user3  spent 60 on the http://google.com since 18-Feb-16
-User user10  spent 90 on the http://hh.ru since 18-Feb-16
-User user3  spent 50 on the http://vk.com since 18-Feb-16
+18-Feb-16
+user10,http://hh.ru,60
+user2,http://ru.wikipedia.org,100
+user3,http://google.com,60
+user3,http://vk.com,13650
+19-Feb-16
+user3,http://vk.com,86400
+20-Feb-16
+user3,http://vk.com,86400
+21-Feb-16
+user3,http://vk.com,86400
+22-Feb-16
+user3,http://vk.com,86400
+23-Feb-16
+user3,http://vk.com,86400
+24-Feb-16
+user3,http://vk.com,86400
+25-Feb-16
+user3,http://vk.com,86400
+26-Feb-16
+user3,http://vk.com,86400
+27-Feb-16
+user3,http://vk.com,86400
+28-Feb-16
+user3,http://vk.com,86400
+29-Feb-16
+user3,http://vk.com,86400
+01-Mar-16
+user3,http://vk.com,86400
+02-Mar-16
+user3,http://vk.com,86400
+03-Mar-16
+user3,http://vk.com,49550

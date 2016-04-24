@@ -1,9 +1,9 @@
-package Map;
+package map;
 
 /**
  * Created by Юлия on 23.04.2016.
  */
-public class Key {
+public class Key implements Comparable<Key> {
     private long day;
     private String user;
     private String url;
@@ -53,5 +53,27 @@ public class Key {
     public int hashCode() {
         return (((url.hashCode()) * 19 + Long.hashCode(this.day)  + user.hashCode()));
 
+    }
+
+
+
+
+    @Override
+    public int compareTo(Key c) {
+        if (c != null && c instanceof Key) {
+            Key  b = (Key)c;
+            //b<this - -1
+            if(this.day >  b.day) return 1;
+            else if (this.day < b.day) return -1;
+            else {
+                if (this.user.compareTo(b.user) != 0 ){
+                    return this.user.compareTo(b.user);
+                }
+                else {
+                    return this.url.compareTo(b.url);
+                }
+            }
+        }
+        return 0;
     }
 }
